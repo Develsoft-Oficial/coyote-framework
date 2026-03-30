@@ -1,0 +1,198 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        php-version: ['8.1', '8.2', '8.3', '8.4']
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-version }}
+        extensions: mbstring, pdo, pdo_mysql, json, tokenizer
+        coverage: xdebug
+
+    - name: Validate composer.json
+      run: composer validate --strict
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Run tests
+      run: composer test
+
+    - name: Run PHPStan analysis
+      run: composer analyse
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results-${{ matrix.php-version }}
+        path: |
+          tests/_output/
+          coverage/
+
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: mbstring
+
+    - name: Lint PHP files
+      run: |
+        find src -name "*.php" -exec php -l {} \;
+        find tests -name "*.php" -exec php -l {} \;
+
+  security:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Run security check
+      run: composer audit
+
+  build-package:
+    runs-on: ubuntu-latest
+    needs: [test, lint, security]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-dev
+
+    - name: Create package archive
+      run: |
+        mkdir -p dist
+        composer archive --format=zip --file=dist/coyote-framework
+
+    - name: Upload package artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: coyote-framework-package
+        path: dist/
+
+  test-package-install:
+    runs-on: ubuntu-latest
+    needs: [test, lint, security]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: mbstring, pdo, json
+
+    - name: Create test project directory
+      run: |
+        mkdir -p /tmp/test-install
+        cd /tmp/test-install
+
+    - name: Create test composer.json
+      working-directory: /tmp/test-install
+      run: |
+        cat > composer.json << 'EOF'
+        {
+            "name": "test/coyote-install",
+            "require": {
+                "coyote/framework": "dev-master"
+            },
+            "repositories": [
+                {
+                    "type": "path",
+                    "url": "${{ github.workspace }}",
+                    "options": {
+                        "symlink": true
+                    }
+                }
+            ]
+        }
+        EOF
+
+    - name: Install package locally
+      working-directory: /tmp/test-install
+      run: |
+        composer install --prefer-dist --no-progress
+        ls -la vendor/coyote/framework/
+
+    - name: Test basic functionality
+      working-directory: /tmp/test-install
+      run: |
+        cat > test.php << 'EOF'
+        <?php
+        require_once __DIR__ . '/vendor/autoload.php';
+        
+        echo "Testing Coyote Framework installation...\n";
+        
+        // Test if core classes exist
+        $classes = [
+            'Coyote\\Core\\Application',
+            'Coyote\\Http\\Request',
+            'Coyote\\Http\\Response',
+            'Coyote\\Database\\Connection',
+            'Coyote\\Auth\\AuthManager',
+            'Coyote\\Validation\\Validator'
+        ];
+        
+        foreach ($classes as $class) {
+            if (class_exists($class)) {
+                echo "✓ $class found\n";
+            } else {
+                echo "✗ $class NOT found\n";
+                exit(1);
+            }
+        }
+        
+        echo "All tests passed!\n";
+        EOF
+        
+        php test.php
