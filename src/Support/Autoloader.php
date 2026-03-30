@@ -8,9 +8,13 @@ namespace Coyote;
  *
  * Esta classe fornece autoloading otimizado para produção
  * e é registrada automaticamente via Composer scripts
+ *
+ * IMPORTANTE: Esta classe é carregada condicionalmente para evitar
+ * conflitos com o autoloader do Composer quando usado como pacote.
  */
-class Autoloader
-{
+if (!class_exists('Coyote\Autoloader', false)) {
+    class Autoloader
+    {
     /**
      * @var array Mapeamento de namespaces para diretórios
      */
@@ -218,20 +222,25 @@ class Autoloader
     {
         return self::$classMap;
     }
+    }
 }
 
-// Registrar namespaces padrão do framework
-Autoloader::addNamespace('Coyote', __DIR__ . '/coyote');
-Autoloader::addNamespace('App', dirname(__DIR__) . '/app');
+// Registrar namespaces padrão do framework (apenas se não estiver via Composer)
+if (!defined('COYOTE_COMPOSER_AUTOLOAD') && class_exists('Coyote\Autoloader', false)) {
+    Autoloader::addNamespace('Coyote', dirname(__DIR__));
+    Autoloader::addNamespace('App', dirname(__DIR__) . '/../app');
+    
+    // Registrar autoloader apenas se não estiver em ambiente Composer
+    if (php_sapi_name() !== 'cli' || !defined('COMPOSER_AUTOLOADER_REGISTERED')) {
+        Autoloader::register();
+    }
+}
 
-// Registrar autoloader
-Autoloader::register();
-
-// Carregar helpers
-require_once __DIR__ . '/coyote/Support/helpers.php';
+// Carregar helpers (sempre necessário)
+require_once __DIR__ . '/helpers.php';
 
 // Função helper global
-if (!function_exists('coyote_autoload')) {
+if (!function_exists('Coyote\coyote_autoload')) {
     /**
      * Função helper para carregar classes manualmente
      *
@@ -239,6 +248,8 @@ if (!function_exists('coyote_autoload')) {
      */
     function coyote_autoload(string $class): void
     {
-        Coyote\Autoloader::loadClass($class);
+        if (class_exists('Coyote\Autoloader', false)) {
+            Coyote\Autoloader::loadClass($class);
+        }
     }
 }
