@@ -46,7 +46,7 @@
 Verifique se as informações estão corretas:
 
 ```
-Nome do pacote: coyote/framework
+Nome do pacote: develsoft/coyote
 Descrição: PHP Micro Framework Leve e Completo
 Versão: v2.0.0 (ou v1.0.0)
 Repositório: https://github.com/Develsoft-Oficial/coyote-framework
@@ -89,7 +89,7 @@ cd test-packagist
 # Criar composer.json
 echo '{
     "require": {
-        "coyote/framework": "^2.0"
+        "develsoft/coyote": "^2.0"
     }
 }' > composer.json
 
@@ -100,7 +100,7 @@ composer install
 ### 4.2 Verificar Instalação
 ```bash
 # Verificar se o pacote foi instalado
-ls -la vendor/coyote/framework/
+ls -la vendor/develsoft/coyote/
 
 # Testar básico
 php -r "require 'vendor/autoload.php'; echo 'Coyote Framework instalado!';"
@@ -152,7 +152,7 @@ git push origin --tags
 
 ### ❌ Pacote não aparece nas buscas
 - Pode levar alguns minutos para indexação
-- Verifique em: `https://packagist.org/packages/coyote/framework`
+- Verifique em: `https://packagist.org/packages/develsoft/coyote`
 - Use o link direto do seu pacote
 
 ## 📊 Monitoramento
@@ -178,7 +178,7 @@ git push origin --tags
 ### 2. **Mantenha composer.json atualizado**
 ```json
 {
-    "name": "coyote/framework",
+    "name": "develsoft/coyote",
     "description": "PHP Micro Framework Leve e Completo",
     "type": "library",
     "license": "MIT",
@@ -227,12 +227,12 @@ composer require ../coyote-framework
 
 ## 🎉 Parabéns!
 
-Seu pacote `coyote/framework` está publicado no Packagist e pode ser instalado por qualquer pessoa no mundo com:
+Seu pacote `develsoft/coyote` está publicado no Packagist e pode ser instalado por qualquer pessoa no mundo com:
 
 ```bash
-composer require coyote/framework
+composer require develsoft/coyote
 ```
 
-**Link do seu pacote:** `https://packagist.org/packages/coyote/framework`
+**Link do seu pacote:** `https://packagist.org/packages/develsoft/coyote`
 
 Agora você faz parte do ecossistema PHP! 🚀

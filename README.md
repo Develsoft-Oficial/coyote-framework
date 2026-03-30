@@ -2,7 +2,7 @@
 
 [![PHP Version](https://img.shields.io/badge/php-8.1%2B-blue.svg)](https://php.net)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Composer](https://img.shields.io/badge/composer-coyote%2Fframework-blue)](https://packagist.org/packages/coyote/framework)
+[![Composer](https://img.shields.io/badge/composer-develsoft%2Fcoyote-blue)](https://packagist.org/packages/develsoft/coyote)
 
 **PHP Micro Framework Leve e Completo** para desenvolvimento rápido de aplicações web modernas.
 
@@ -11,7 +11,7 @@
 ### Via Composer (Recomendado)
 
 ```bash
-composer require coyote/framework
+composer require develsoft/coyote
 ```
 
 ### Instalação de Desenvolvimento
@@ -191,7 +191,7 @@ composer check
 O framework suporta desenvolvimento local com symlink/junction:
 
 1. **Edite os arquivos** em `src/`
-2. **As mudanças são refletidas automaticamente** em `test-app/vendor/coyote/framework/`
+2. **As mudanças são refletidas automaticamente** em `test-app/vendor/develsoft/coyote/`
 3. **Teste imediatamente** com a aplicação de teste
 
 ### Scripts de Desenvolvimento

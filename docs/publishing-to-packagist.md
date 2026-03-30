@@ -60,7 +60,7 @@ mkdir test-packagist-install && cd test-packagist-install
 # Criar composer.json
 echo '{
     "require": {
-        "coyote/framework": "^2.0"
+        "develsoft/coyote": "^2.0"
     }
 }' > composer.json
 

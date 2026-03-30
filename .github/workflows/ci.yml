@@ -144,7 +144,7 @@ jobs:
         {
             "name": "test/coyote-install",
             "require": {
-                "coyote/framework": "dev-master"
+                "develsoft/coyote": "dev-master"
             },
             "repositories": [
                 {
@@ -162,7 +162,7 @@ jobs:
       working-directory: /tmp/test-install
       run: |
         composer install --prefer-dist --no-progress
-        ls -la vendor/coyote/framework/
+        ls -la vendor/develsoft/coyote/
 
     - name: Test basic functionality
       working-directory: /tmp/test-install

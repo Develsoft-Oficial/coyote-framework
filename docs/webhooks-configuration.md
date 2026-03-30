@@ -14,7 +14,7 @@ Webhooks permitem que o Packagist seja notificado automaticamente quando você f
 
 2. **Navegue até seu pacote**
    - Clique em "Your Packages" no menu
-   - Selecione "coyote/framework"
+   - Selecione "develsoft/coyote"
 
 3. **Configurar Webhook**
    - Clique no ícone de engrenagem (Settings)
@@ -136,7 +136,7 @@ curl -XPOST https://packagist.org/api/github \
    ```
 
 2. **Forçar atualização no Packagist:**
-   - Acesse https://packagist.org/packages/coyote/framework
+   - Acesse https://packagist.org/packages/develsoft/coyote
    - Clique no botão "Update" (se disponível)
    - Ou use a API como mostrado acima
 
