@@ -1,0 +1,54 @@
+# Dependencies
+/vendor/
+/node_modules/
+
+# Framework development symlink
+/test-app/vendor/
+
+# Backup
+/backup-old-structure/
+
+# Environment
+/.env
+/.env.local
+/.env.*.local
+
+# Logs
+/storage/logs/*
+!/storage/logs/.gitkeep
+
+# Cache
+/storage/cache/*
+!/storage/cache/.gitkeep
+
+# Sessions
+/storage/sessions/*
+!/storage/sessions/.gitkeep
+
+# Tests
+/coverage/
+
+# IDE
+/.vscode/
+/.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Composer
+/composer.lock
+/composer-package.json
+
+# Test artifacts
+*.txt
+*.log
+
+# Temporary files
+*.tmp
+
+# Test clean installation directory (contains recursive symlinks)
+/test-clean-install/
+*.temp
