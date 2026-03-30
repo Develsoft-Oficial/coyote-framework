@@ -1,0 +1,1 @@
+usuario.nome|s:11:"João Silva";contador_acessos|i:2;auth.authenticated|b:1;auth.user_id|i:123;auth.user_name|s:11:"João Silva";auth.last_login|s:19:"2026-03-29 20:52:26";_flash|a:2:{s:3:"new";a:2:{s:16:"mensagem_sucesso";s:33:"Operação realizada com sucesso!";s:13:"tipo_mensagem";s:7:"success";}s:3:"old";a:0:{}}

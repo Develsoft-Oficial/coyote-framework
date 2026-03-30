@@ -1,0 +1,123 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "ab12fbee4a3928d9608687bfac71bad5",
+    "packages": [
+        {
+            "name": "coyote/framework",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "..",
+                "reference": "752ed17bfa066e5c987842d5c5a6ed039fe0c424"
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "ext-pdo": "*",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.6",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "coyote": {
+                    "version": "1.0.0-dev",
+                    "providers": [
+                        "Coyote\\Providers\\ConfigServiceProvider",
+                        "Coyote\\Providers\\EventServiceProvider",
+                        "Coyote\\Providers\\LogServiceProvider"
+                    ],
+                    "aliases": {
+                        "App": "Coyote\\Support\\Facades\\App",
+                        "Config": "Coyote\\Support\\Facades\\Config",
+                        "Log": "Coyote\\Support\\Facades\\Log"
+                    }
+                },
+                "branch-alias": {
+                    "dev-main": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Coyote\\": "src/"
+                },
+                "files": [
+                    "src/Support/helpers.php"
+                ]
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Coyote\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "post-autoload-dump": [
+                    "Coyote\\Autoloader::register"
+                ],
+                "optimize": [
+                    "@php src/Cli/Commands/OptimizeCommand.php"
+                ],
+                "cache:clear": [
+                    "@php src/Cli/Commands/CacheClearCommand.php"
+                ],
+                "test": [
+                    "@php vendor/bin/phpunit"
+                ],
+                "test-coverage": [
+                    "@php vendor/bin/phpunit --coverage-html coverage"
+                ],
+                "analyse": [
+                    "@php vendor/bin/phpstan analyse"
+                ],
+                "check": [
+                    "@test",
+                    "@analyse"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Coyote Framework Team",
+                    "email": "dev@coyoteframework.org"
+                }
+            ],
+            "description": "PHP Micro Framework Leve e Completo",
+            "homepage": "https://github.com/coyoteframework/framework",
+            "keywords": [
+                "coyote",
+                "framework",
+                "micro",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/coyoteframework/framework/issues",
+                "source": "https://github.com/coyoteframework/framework",
+                "docs": "https://coyoteframework.org/docs"
+            },
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "coyote/framework": 20
+    },
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}
