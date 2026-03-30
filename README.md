@@ -20,7 +20,7 @@ Para desenvolver o framework localmente:
 
 ```bash
 # Clone o repositório
-git clone https://github.com/Develsoft-Oficial/coyote.git
+git clone https://github.com/Develsoft-Oficial/coyote-framework.git
 cd framework
 
 # Instale dependências
@@ -217,7 +217,7 @@ O Coyote Framework é licenciado sob a licença MIT. Veja o arquivo [LICENSE](LI
 ## 🆘 Suporte
 
 - **Documentação**: [docs/](docs/README.md)
-- **Issues**: [GitHub Issues](https://github.com/Develsoft-Oficial/coyote/issues)
+- **Issues**: [GitHub Issues](https://github.com/Develsoft-Oficial/coyote-framework/issues)
 - **Email**: dev@develsoft.com.br
 
 ---

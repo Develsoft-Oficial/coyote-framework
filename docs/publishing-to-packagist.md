@@ -12,7 +12,7 @@
 
 ```bash
 # Adicionar remote do GitHub (se ainda não tiver)
-git remote add origin https://github.com/Develsoft-Oficial/coyote.git
+git remote add origin https://github.com/Develsoft-Oficial/coyote-framework.git
 
 # Push do código e tags
 git push -u origin master
@@ -21,7 +21,7 @@ git push --tags
 
 ### 2. Configurar o Repositório no GitHub
 
-1. Acesse https://github.com/Develsoft-Oficial/coyote
+1. Acesse https://github.com/Develsoft-Oficial/coyote-framework
 2. Certifique-se de que o repositório está **público**
 3. Adicione descrição: "PHP Micro Framework Leve e Completo"
 4. Adicione tópicos: `php`, `framework`, `micro-framework`, `web-application`
@@ -32,7 +32,7 @@ git push --tags
 1. Acesse https://packagist.org/login
 2. Faça login com sua conta GitHub (recomendado)
 3. Clique em "Submit" no menu superior
-4. Cole a URL do repositório GitHub: `https://github.com/Develsoft-Oficial/coyote`
+4. Cole a URL do repositório GitHub: `https://github.com/Develsoft-Oficial/coyote-framework`
 5. Clique em "Check" para validar
 6. Clique em "Submit" para publicar
 

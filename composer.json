@@ -4,7 +4,7 @@
     "type": "library",
     "license": "MIT",
     "keywords": ["framework", "php", "micro", "coyote"],
-    "homepage": "https://github.com/Develsoft-Oficial/coyote",
+    "homepage": "https://github.com/Develsoft-Oficial/coyote-framework",
     "authors": [
         {
             "name": "Coyote Framework Team",
@@ -97,8 +97,8 @@
         }
     },
     "support": {
-        "issues": "https://github.com/coyoteframework/framework/issues",
-        "source": "https://github.com/coyoteframework/framework",
-        "docs": "https://coyoteframework.org/docs"
+        "issues": "https://github.com/Develsoft-Oficial/coyote-framework/issues",
+        "source": "https://github.com/Develsoft-Oficial/coyote-framework",
+        "docs": "https://github.com/Develsoft-Oficial/coyote-framework#readme"
     }
 }

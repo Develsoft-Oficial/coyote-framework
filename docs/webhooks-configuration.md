@@ -24,7 +24,7 @@ Webhooks permitem que o Packagist seja notificado automaticamente quando você f
 4. **Autorizar o Packagist**
    - Você será redirecionado para o GitHub
    - Autorize o Packagist a acessar seu repositório
-   - Selecione o repositório "Develsoft-Oficial/coyote"
+   - Selecione o repositório "Develsoft-Oficial/coyote-framework"
    - Clique em "Install & Authorize"
 
 5. **Verificar Configuração**
@@ -44,7 +44,7 @@ Se o método automático não funcionar, configure manualmente:
 
 ### 2. Configurar Webhook no GitHub
 
-1. Acesse https://github.com/Develsoft-Oficial/coyote/settings/hooks
+1. Acesse https://github.com/Develsoft-Oficial/coyote-framework/settings/hooks
 2. Clique em "Add webhook"
 
 3. **Configurações do Webhook:**
@@ -86,15 +86,15 @@ Para integração programática:
 ```bash
 # Atualizar pacote via API
 curl -XPOST https://packagist.org/api/update-package?token=SEU_TOKEN \
-  -d '{"repository":{"url":"https://github.com/Develsoft-Oficial/coyote"}}'
+  -d '{"repository":{"url":"https://github.com/Develsoft-Oficial/coyote-framework"}}'
 
 # Ou usando webhook manual
 curl -XPOST https://packagist.org/api/github \
   -H "Content-Type: application/json" \
   -d '{
     "repository": {
-      "url": "https://github.com/Develsoft-Oficial/coyote",
-      "name": "coyote"
+      "url": "https://github.com/Develsoft-Oficial/coyote-framework",
+      "name": "coyote-framework"
     },
     "ref": "refs/tags/v2.0.0"
   }'
@@ -124,7 +124,7 @@ curl -XPOST https://packagist.org/api/github \
    
    # Ou forçar atualização via API
    curl -XPOST https://packagist.org/api/update-package?token=SEU_TOKEN \
-     -d '{"repository":{"url":"https://github.com/Develsoft-Oficial/coyote"}}'
+     -d '{"repository":{"url":"https://github.com/Develsoft-Oficial/coyote-framework"}}'
    ```
 
 ### Packagist não atualiza após push
@@ -164,7 +164,7 @@ jobs:
       - name: Notify Packagist
         run: |
           curl -XPOST "https://packagist.org/api/update-package?token=${{ secrets.PACKAGIST_TOKEN }}" \
-            -d '{"repository":{"url":"https://github.com/Develsoft-Oficial/coyote"}}'
+            -d '{"repository":{"url":"https://github.com/Develsoft-Oficial/coyote-framework"}}'
 ```
 
 ## Monitoramento
